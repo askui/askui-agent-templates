@@ -1,7 +1,5 @@
-# from askui import VisionAgent
+from askui import VisionAgent
 
 
-# with VisionAgent() as agent:
-    # Do something
-
-print("Empty agent is running...")
+with VisionAgent() as agent:
+    print("Empty agent is running...")
