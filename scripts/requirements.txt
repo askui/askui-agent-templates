@@ -1,0 +1,5 @@
+PyYAML==6.0.1
+jsonschema==4.21.1
+python-dateutil==2.8.2
+types-PyYAML==6.0.12.12 
+pathspec==0.12.1

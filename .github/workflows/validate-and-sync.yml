@@ -1,0 +1,64 @@
+name: Validate and Sync Agent Templates
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  validate-and-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: 'scripts/requirements.txt'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scripts/requirements.txt
+          
+      - name: Validate Repository Structure
+        run: python -m scripts.validate_and_create_manifest
+
+      - name: Configure AWS Credentials
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: "arn:aws:iam::828784128492:role/Github-askui-agent-templates"
+          role-session-name: ${{ github.actor }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          
+      - name: Sync to S3
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        run: |
+          # Set target bucket based on branch
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            S3_BUCKET="s3://askui-no-code/agents/templates"
+          else
+            S3_BUCKET="s3://askui-no-code-dev/agents/templates"
+          fi
+          
+          # Create a temporary directory for syncing
+          mkdir -p sync_dir
+          
+          # Copy manifest and agent template directories
+          cp manifest.yml sync_dir/
+          for d in */; do
+            if [ -f "${d}agent.yml" ]; then
+              cp -r "$d" "sync_dir/$d"
+            fi
+          done
+          
+          # Sync to S3 with deletion
+          aws s3 sync sync_dir/ $S3_BUCKET --delete

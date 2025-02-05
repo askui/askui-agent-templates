@@ -1,0 +1,39 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+type: object
+required:
+  - template
+  - entrypoint
+additionalProperties: false
+properties:
+  template:
+    type: object
+    required:
+      - name
+    additionalProperties: false
+    properties:
+      name:
+        type: string
+        description: The name of the agent template
+        pattern: ^[a-zA-Z0-9]([a-zA-Z0-9-_.+ ]{0,62}[a-zA-Z0-9])?$
+        minLength: 1
+        maxLength: 64
+        examples:
+          - "Empty Agent"
+          - "Data Extraction Agent"
+          - "Invoice Input Agent"
+      description:
+        type: string
+        description: A brief description of what the agent does
+        maxLength: 1024
+        examples:
+          - "This agent does not do anything but can serve as a starting point for implementing a custom agent."
+          - "This agent extracts data from files and saves it to a CSV file."
+          - "This agent takes an invoice as input and inputs it into ERP system."
+  entrypoint:
+    type: string
+    description: |
+      The main Python file that serves as the entry point for the agent. Must be a relative path that does not use `..`.
+    pattern: ^(?!\/|.*\.\.)[a-zA-Z0-9_\/-]+\.py$
+    examples:
+      - main.py
+      - src/main.py
