@@ -32,7 +32,7 @@ jobs:
         run: python -m scripts.validate_and_create_manifest
 
       - name: Configure AWS Credentials
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        if: github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: "arn:aws:iam::828784128492:role/Github-askui-agent-templates"
@@ -40,7 +40,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           
       - name: Sync to S3
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+        if: github.event_name == 'push'
         run: |
           # Set target bucket based on branch
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
