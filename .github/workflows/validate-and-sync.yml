@@ -1,6 +1,7 @@
 name: Validate and Sync Agent Templates
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main, dev ]
   pull_request:
@@ -32,7 +33,7 @@ jobs:
         run: python -m scripts.validate_and_create_manifest
 
       - name: Configure AWS Credentials
-        if: github.event_name == 'push'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: "arn:aws:iam::828784128492:role/Github-askui-agent-templates"
@@ -40,7 +41,7 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
           
       - name: Sync to S3
-        if: github.event_name == 'push'
+        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev')
         run: |
           # Set target bucket based on branch
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
