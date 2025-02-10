@@ -39,7 +39,7 @@ for template_id in $template_ids; do
         --prefix "${s3_templates_src_prefix}/${template_id}/" \
         --query "Versions[?IsLatest==\`true\`].[Key, VersionId]" \
         --output json | \
-    jq -r '.[] | "- key: \(.[])\n  version_id: \(.[1])"' > "${temp_sync_dir}/${template_id}.manifest.yml"
+    jq -r '.[] | "- key: \"\(.[0])\"\n  version_id: \"\(.[1])\""' > "${temp_sync_dir}/${template_id}.manifest.yml"
 
     sed -i '1i\objects:' "${temp_sync_dir}/${template_id}.manifest.yml"
 
