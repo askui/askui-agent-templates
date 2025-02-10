@@ -6,14 +6,14 @@ Templates for AskUI Agents that can be created through the AskUI Hub.
 
 ### Quickstart
 
-Create a template by adding a directory inside the root of the repository containing an `agent.yml` file. The `agent.yml` should follow the [agent schema](./agent-schema.yml) and allows you to define metadata of the agent template and the actual agent to be created from it when a user selects it in the AskUI Hub. Place all additional files, e.g., a `README.md`, `requirements.txt`, and the actual agent code, e.g., `main.py`, in the template directory to include it with the agent when it is created. All these files are going to be copied to the actual agent's directory in the user's workspace on creation of an agent from the template.
+Create a template by adding a directory inside `src/` containing an `agent.yml` file. The `agent.yml` should follow the [agent schema](./agent-schema.yml) and allows you to define metadata of the agent template and the actual agent to be created from it when a user selects it in the AskUI Hub. Place all additional files, e.g., a `README.md`, `requirements.txt`, and the actual agent code, e.g., `main.py`, in the template directory to include it with the agent when it is created. All these files are going to be copied to the actual agent's directory in the user's workspace on creation of an agent from the template.
 
 Create, update or delete agent templates by pushing to the `main` or `dev` branch on the repository making the templates available in the AskUI Hub. While `dev` syncs to the dev environment ([hub-dev.askui.com](https://hub-dev.askui.com)), `main` syncs to the production environment ([hub.askui.com](https://hub.askui.com)).
 
 
 ### More details
 
-Directories that don't contain an `agent.yml` file or that start with `.` are not regarded as agent templates and, therefore, ignored. This also goes for files that are ignored by `.gitignore` within an agent template directory.
+Directories within `src/` that don't contain an `agent.yml` file are not regarded as agent templates and, therefore, ignored.
 
 Agent templates including a `manifest.yml` are synced to S3 and the sync is triggered by a push to the `main` or `dev` branch. The `manifest.yml` is created within the CI pipeline. It is a summary of all templates in the repository and is used for providing an overview of all available templates in the AskUI Hub. 
 

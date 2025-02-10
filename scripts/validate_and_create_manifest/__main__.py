@@ -25,8 +25,9 @@ S3_PATH_PREFIX = "agent/templates/"
 MAX_PATH_LENGTH = MAX_S3_KEY_LENGTH - len(S3_PATH_PREFIX)
 PATH_SEGMENT_PATTERN = r"^[a-zA-Z0-9-_.]{1,64}$"
 GITHUB_REPO_URL = "https://github.com/askui/askui-agent-templates"
-IGNORE_FILES = {".gitignore"}
+IGNORE_FILE_PATHS = {".gitignore"} # only relevant for local validation
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+AGENT_TEMPLATES_DIR = "src"
 
 # Configure logging
 logging.basicConfig(
@@ -85,27 +86,27 @@ def validate_path(path: str) -> list[FilePathError]:
     return errors
 
 
-def get_path_spec(template_dir: str) -> PathSpec:
+def get_ignore_path_spec() -> PathSpec:
     """Create PathSpec from ignore files in template directory."""
     patterns = []
-    for ignore_file in IGNORE_FILES:
-        ignore_path = Path(template_dir) / ignore_file
-        if ignore_path.exists():
-            patterns.extend(ignore_path.read_text().splitlines())
+    for ignore_file_path_str in IGNORE_FILE_PATHS:
+        ignore_file_path = Path(ignore_file_path_str)
+        if ignore_file_path.exists():
+            patterns.extend(ignore_file_path.read_text().splitlines())
     return PathSpec.from_lines(GitWildMatchPattern, patterns)
 
 
 def validate_template_paths(
-    template_dir: str, path_spec: PathSpec
+    template_dir: str, ignore_path_spec: PathSpec
 ) -> List[ValidationError]:
     errors: List[ValidationError] = []
 
     for root, _, files in os.walk(template_dir):
-        if path_spec.match_file(root):
+        if ignore_path_spec.match_file(root):
             continue
         for file in files:
             file_path = os.path.join(root, file)
-            if path_spec.match_file(file_path):
+            if ignore_path_spec.match_file(file_path):
                 continue
             relative_path = os.path.relpath(file_path)
             if _errors := validate_path(relative_path):
@@ -165,7 +166,7 @@ def create_template_info(
     template_dir: str, agent_config: Dict[str, Any]
 ) -> TemplateInfo:
     return TemplateInfo(
-        id=template_dir,
+        id=os.path.basename(os.path.normpath(template_dir)),
         url=f"{GITHUB_REPO_URL}/blob/{get_git_sha()}/{template_dir}/agent.yml",
         last_modified=get_last_modified_iso(template_dir),
         name=agent_config["template"]["name"],
@@ -189,11 +190,11 @@ def validate_entrypoint_exists(
 
 
 def validate_template_directory(
-    template_dir: str, schema: Dict[str, Any], path_spec: PathSpec
+    template_dir: str, schema: Dict[str, Any], ignore_path_spec: PathSpec
 ) -> Tuple[Optional[TemplateInfo], List[ValidationError]]:
     logger.info(f"Validating template directory: {template_dir}")
     errors: List[ValidationError] = []
-    errors.extend(validate_template_paths(template_dir, path_spec))
+    errors.extend(validate_template_paths(template_dir, ignore_path_spec))
     if errors:
         return None, errors
 
@@ -231,24 +232,25 @@ def main() -> None:
             f"Failed to load agent-schema.yml: {e}. Are you sure you are running this script from the root of the agent-templates repository?"
         ) from e
 
-    path_spec = get_path_spec(".")  # Create PathSpec once at root level
+    ignore_path_spec = get_ignore_path_spec()
     manifest = TemplateManifest(agent_templates=[])
 
-    for item in os.listdir("."):
-        if not os.path.isdir(item):
-            logger.debug(f"Skipping {item}: not a directory")
+    for _dir in os.listdir(AGENT_TEMPLATES_DIR):
+        dir = os.path.join(AGENT_TEMPLATES_DIR, _dir)
+        if not os.path.isdir(dir):
+            logger.debug(f"Skipping {dir}: not a directory")
             continue
 
-        if item.startswith("."):
-            logger.debug(f"Skipping {item}: starts with .")
-            continue
-
-        agent_yml_path = os.path.join(item, "agent.yml")
+        agent_yml_path = os.path.join(dir, "agent.yml")
         if not os.path.exists(agent_yml_path):
-            logger.debug(f"Skipping {item}: no agent.yml found")
+            logger.debug(f"Skipping {dir}: no agent.yml found")
             continue
 
-        template_info, errors = validate_template_directory(item, schema, path_spec)
+        template_info, errors = validate_template_directory(
+            template_dir=dir,
+            schema=schema,
+            ignore_path_spec=ignore_path_spec,
+        )
         validation_errors.extend(errors)
         if template_info:
             manifest.agent_templates.append(template_info)
