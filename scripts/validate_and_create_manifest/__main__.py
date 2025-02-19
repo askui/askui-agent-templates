@@ -167,7 +167,7 @@ def create_template_info(
 ) -> TemplateInfo:
     return TemplateInfo(
         id=os.path.basename(os.path.normpath(template_dir)),
-        url=f"{GITHUB_REPO_URL}/blob/{get_git_sha()}/{template_dir}/agent.yml",
+        url=f"{GITHUB_REPO_URL}/blob/{get_git_sha()}/{template_dir}",
         last_modified=get_last_modified_iso(template_dir),
         name=agent_config["template"]["name"],
         description=agent_config["template"]["description"],
