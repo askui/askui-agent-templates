@@ -1,5 +1,5 @@
 template:
-  name: "Empty Agent"
-  description: "This agent does not do anything but can serve as a starting point for implementing a custom agent."
+  name: "Basic Vision Agent"
+  description: "This agent contains a basic Python Vision Agent."
 
 entrypoint: main.py
