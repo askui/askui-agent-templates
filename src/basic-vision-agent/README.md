@@ -6,8 +6,6 @@ This repository contains a basic agent designed for use with AskUI Hub. The agen
 - 🧩 Logic and assets files: Python scripts and other necessary assets for the agent's functionality.
 - 📘 `README.md`: Setup and running instructions (you are reading it now!).
 
----
-
 ## 📚 Table of Contents
 1. [⚙️ Prerequisites](#-prerequisites)
 2. [🔧 Setup](#-setup)
@@ -16,8 +14,6 @@ This repository contains a basic agent designed for use with AskUI Hub. The agen
 5. [🤝 Support and Contribution](#-support-and-contribution)
 6. [📜 License](#-license)
 
----
-
 ## ⚙️ Prerequisites
 
 Before you can set up and run your agent, ensure you have the following installed:
@@ -25,7 +21,6 @@ Before you can set up and run your agent, ensure you have the following installe
 - 🔄 [AskUI Shell](https://docs.askui.com) - The command line tool for AskUI Agnets.
 - 🖊️ A code editor of your choice (e.g., VSCode, PyCharm).
 
----
 
 ## 🔧 Setup
 
@@ -35,8 +30,6 @@ Follow these steps to set up your agent:
     ```sh
     pip install -r requirements.txt
     ```
-
----
 
 ## ▶️ Run Your Agent
 
