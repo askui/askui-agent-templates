@@ -10,7 +10,7 @@
     },
     "terminal.integrated.profiles.osx":{
         "askui-shell": {    
-            "path": ["${env:ASKUI_INSTALLATION_DIRECTORY}/Tools/askui-shell.cmd"],
+            "path": ["${env:ASKUI_INSTALLATION_DIRECTORY}/Tools/askui-shell"],
             "icon": "robot",
             "overrideName": true,
             "color": "terminal.ansiMagenta",
@@ -18,7 +18,7 @@
     },
     "terminal.integrated.profiles.linux":{
         "askui-shell": {    
-            "path": ["${env:ASKUI_INSTALLATION_DIRECTORY}/Tools/askui-shell.cmd"],
+            "path": ["${env:ASKUI_INSTALLATION_DIRECTORY}/Tools/askui-shell"],
             "icon": "robot",
             "overrideName": true,
             "color": "terminal.ansiMagenta",

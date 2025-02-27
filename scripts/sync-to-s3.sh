@@ -23,7 +23,7 @@ temp_sync_dir=$(mktemp -d)
 for template_id in $template_ids; do
 if [ -d "src/$template_id" ]; then
     mkdir -p "${temp_sync_dir}/src/$template_id"
-    cp -r "src/$template_id/"* "${temp_sync_dir}/src/$template_id/" &
+    cp -r "src/${template_id}/." "${temp_sync_dir}/src/${template_id}/" &
 fi
 done
 wait
