@@ -11,6 +11,7 @@ This repository contains a basic agent designed for use with AskUI Hub. The agen
 2. [🔧 Setup](#-setup)
 3. [▶️ Run Your Agent](#-run-your-agent)
 4. [🛠️ Edit and Sync Changes](#-edit-and-sync-changes)
+4. [📤 Share Agent in AskUI Hub](#-share-agent-in-askui-hub)
 5. [🤝 Support and Contribution](#-support-and-contribution)
 6. [📜 License](#-license)
 
