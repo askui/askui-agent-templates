@@ -1,0 +1,5 @@
+template:
+  name: "QA Agent with Pytest"
+  description: "This agent contains a Pytest QA Agent."
+
+entrypoint: pytest
