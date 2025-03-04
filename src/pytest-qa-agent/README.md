@@ -47,7 +47,7 @@ Follow these steps to set up your agent:
 
 3. **Configure your Anthropic API key:**
 
-    You'll need to set your [Anthropic API key]() as an environment variable:
+    You'll need to set your [Anthropic API key](https://console.anthropic.com/settings/keys) as an environment variable:
 
     ```sh
     $env:ANTHROPIC_API_KEY=<your_api_key_here>
