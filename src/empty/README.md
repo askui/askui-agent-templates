@@ -5,21 +5,22 @@ This is a simple agent that does not do anything but can serve as a starting poi
 ## Installation
 
 ```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate it (choose one):
-# On Windows:
-venv\Scripts\activate
-# On Unix/MacOS:
-source venv/bin/activate
-
 # Install requirements
 pip install -r requirements.txt
 ```
 
 ## Usage
 
+1. Start AskUI Shell by running the following command:
+
 ```bash
+# Start AskUI Shell
+askui-shell
+```
+
+2. Run the following command to start the Vision Agent:
+
+```bash
+# Start Vision Agent
 python -m main
 ```
