@@ -1,1 +1,1 @@
-askui>=0.2.3
+askui
