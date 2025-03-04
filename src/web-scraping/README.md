@@ -1,4 +1,4 @@
-# 🕸️ web Scraping Agent
+# 🕸️ Web Scraping Agent
 
 This repository contains a data scraping agent designed for use with AskUI Hub. The agent demonstrates how to scrape product information from web pages automatically.
 
