@@ -171,4 +171,7 @@ cython_debug/
 .pypirc
 
 # Manifest file
+
+
+.DS_Store
 manifest.yml

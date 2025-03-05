@@ -2,4 +2,4 @@ template:
   name: "Basic Vision Agent"
   description: "This agent contains a basic Python Vision Agent."
 
-entrypoint: main.py
+entrypoint: python main.py
