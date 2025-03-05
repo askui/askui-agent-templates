@@ -32,8 +32,9 @@ properties:
   entrypoint:
     type: string
     description: |
-      The main Python file that serves as the entry point for the agent. Must be a relative path that does not use `..`.
-    pattern: ^(?!\/|.*\.\.)[a-zA-Z0-9_\/-]+\.py$
+      The main Python file that serves as the entry point for the agent. Must be a an executable. Executable must be available in the PATH on the machine running the agent.
+    minLength: 1
     examples:
-      - main.py
-      - src/main.py
+      - python main.py
+      - ./main.sh
+      - pytest
