@@ -1,5 +1,5 @@
 template:
-  name: "Basic Vision Agent"
-  description: "This agent contains a basic Python Vision Agent."
+  name: "PDF to Excel Agent"
+  description: "This agent takes pdfs from a folder and converts them into an excel file. Extracted information can be changed in the prompt."
 
 entrypoint: main.py
