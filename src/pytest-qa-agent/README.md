@@ -26,7 +26,6 @@ Before you can set up and run your agent, ensure you have the following installe
 
 - 🔄 [AskUI Shell](https://docs.askui.com) - The command line tool for AskUI Agents.
 - 🖊️ A code editor of your choice (e.g., VSCode, PyCharm).
-- 🐍 Python 3.8 or later.
 - 🔑 An Anthropic API key - Required for the VisionAgent to function properly.
 
 ## 🔧 Setup
