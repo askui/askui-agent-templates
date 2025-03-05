@@ -2,4 +2,4 @@ template:
   name: "Web Scraping Agent"
   description: "This agent contains a AskUI Web Scraping Agent. It scrapes data from a website and stores it in a text file."
 
-entrypoint: main.py
+entrypoint: python main.py

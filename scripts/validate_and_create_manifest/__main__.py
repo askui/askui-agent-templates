@@ -174,21 +174,6 @@ def create_template_info(
     )
 
 
-def validate_entrypoint_exists(
-    template_dir: str, entrypoint: str
-) -> ValidationError | None:
-    entrypoint_path = os.path.join(template_dir, entrypoint)
-    if not os.path.exists(entrypoint_path):
-        return ValidationError(
-            ValidationErrorType.MISSING_FILE,
-            f"Entrypoint {entrypoint_path} does not exist",
-            {"entrypoint": entrypoint_path},
-            template_dir,
-        )
-
-    return None
-
-
 def validate_template_directory(
     template_dir: str, schema: Dict[str, Any], ignore_path_spec: PathSpec
 ) -> Tuple[Optional[TemplateInfo], List[ValidationError]]:
@@ -203,12 +188,6 @@ def validate_template_directory(
     if error or not agent_config:
         if error:
             errors.append(error)
-        return None, errors
-
-    if entrypoint_error := validate_entrypoint_exists(
-        template_dir, agent_config["entrypoint"]
-    ):
-        errors.append(entrypoint_error)
         return None, errors
 
     logger.info(f"Template directory {template_dir} is valid")
