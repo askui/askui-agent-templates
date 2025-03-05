@@ -33,18 +33,21 @@ Before you can set up and run your agent, ensure you have the following:
 ## 🔧 Setup
 
 1. **Start AskUI Shell:**
+
     ```sh
     askui-shell
     ```
 
 2. **Install dependencies:**
+
     ```sh
     pip install -r requirements.txt
     ```
 
 3. **Set up environment variables:**
+
     ```sh
-    export OPENAI_API_KEY='your-api-key-here'  # Required for OpenAI Vision
+    $env:OPENAI_API_KEY='your-api-key-here'  # Required for OpenAI Vision
     ```
 
 ## ▶️ Run Your Agent
@@ -54,6 +57,7 @@ Before you can set up and run your agent, ensure you have the following:
    - Place your PDF invoices in this folder
 
 2. **Run the agent:**
+
     ```sh
     python main.py
     ```
@@ -61,13 +65,15 @@ Before you can set up and run your agent, ensure you have the following:
 ## 📋 Usage Guide
 
 **OpenAI Vision Mode (Default)**
-   - Uses OpenAI's Vision API for high-accuracy data extraction
-   - Extracts structured data including:
-     - Invoice numbers
-     - Dates
-     - Line items (quantity, weights, prices, etc.)
+
+- Uses OpenAI's Vision API for high-accuracy data extraction
+- Extracts structured data including:
+  - Invoice numbers
+  - Dates
+  - Line items (quantity, weights, prices, etc.)
   
 The extracted data is saved to `extraction.xlsx` with:
+
 - One sheet per PDF
 - Structured columns for invoice details
 - Separate rows for each line item
