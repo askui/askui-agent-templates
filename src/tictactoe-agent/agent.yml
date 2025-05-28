@@ -1,0 +1,5 @@
+template:
+  name: "Basic Vision Agent"
+  description: "This agent contains a basic Python Vision Agent."
+
+entrypoint: python main.py
