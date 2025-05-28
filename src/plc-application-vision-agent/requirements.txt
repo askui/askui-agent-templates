@@ -1,0 +1,4 @@
+askui
+PySide6
+pyqtgraph
+pyqt6

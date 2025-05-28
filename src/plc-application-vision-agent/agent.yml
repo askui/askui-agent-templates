@@ -1,0 +1,5 @@
+template:
+  name: "PLC Application Vision Agent"
+  description: "This agent contains a basic Python Vision Agent that interacts with a PLC application."
+
+entrypoint: python main.py
