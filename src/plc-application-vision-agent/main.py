@@ -33,8 +33,8 @@ with VisionAgent() as agent:
 
     is_equal = agent.get("Is the Handle of the slider equal the procentage of the water tank level?", response_schema=bool)
     if is_equal:
-        subprocess.run(["echo", "✅ Slider and water tank levels are synchronized"])
+        print("✅ Slider and water tank levels are synchronized")
     else:
-        subprocess.run(["echo", "❌ Slider and water tank levels are not synchronized"])
+        print("❌ Slider and water tank levels are not synchronized")
     
     assert is_equal, "The slider is not at the correct level"
