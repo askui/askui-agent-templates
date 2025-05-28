@@ -1,5 +1,5 @@
 template:
-  name: "Basic Vision Agent"
-  description: "This agent contains a basic Python Vision Agent."
+  name: "Tic Tac Toe Agent"
+  description: "This agent contains a Tic Tac Toe Python Vision Agent."
 
 entrypoint: python main.py
