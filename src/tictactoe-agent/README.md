@@ -1,31 +1,30 @@
-# 🚀 Basic Agent
+# 🎮 Tic Tac Toe Agent
 
-This repository contains a basic agent designed for use with AskUI Hub. The agent consists of the following key components:
+This repository contains an AI agent that plays Tic Tac Toe using AskUI. The agent implements strategic gameplay and can play against the computer on playtictactoe.org.
 
-- 📄 `agent.yml`: Metadata configuration file for the agent.
-- 🧩 Logic and assets files: Python scripts and other necessary assets for the agent's functionality.
-- 📘 `README.md`: Setup and running instructions (you are reading it now!).
+## 🎥 Demo
+
+<div style="position: relative; padding-bottom: 64.86161251504213%; height: 0;"><iframe src="https://www.loom.com/embed/621e2dd6fb4d44d2b1181f1b11e013c9?sid=36d64cef-6bcc-4371-8c9f-52d36162ad56" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
 
 ## 📚 Table of Contents
 
-- [🚀 Basic Agent](#-basic-agent)
+- [🎮 Tic Tac Toe Agent](#-tic-tac-toe-agent)
+  - [🎥 Demo](#-demo)
   - [📚 Table of Contents](#-table-of-contents)
   - [⚙️ Prerequisites](#️-prerequisites)
   - [🔧 Setup](#-setup)
   - [▶️ Run Your Agent](#️-run-your-agent)
-- [🛠️ Edit and Sync Changes](#️-edit-and-sync-changes)
-  - [✏️ Edit Your Agent](#️-edit-your-agent)
-  - [🔄 Sync Changes to AskUI Hub](#-sync-changes-to-askui-hub)
-- [📤 Share Agent in AskUI Hub](#-share-agent-in-askui-hub)
-- [🤝 Support and Contribution](#-support-and-contribution)
-- [📜 License](#-license)
+  - [🎯 Game Strategy](#-game-strategy)
+  - [🤝 Support and Contribution](#-support-and-contribution)
+  - [📜 License](#-license)
 
 ## ⚙️ Prerequisites
 
 Before you can set up and run your agent, ensure you have the following installed:
 
-- 🔄 [AskUI Shell](https://docs.askui.com) - The command line tool for AskUI Agnets.
-- 🖊️ A code editor of your choice (e.g., VSCode, PyCharm).
+- 🔄 [AskUI Shell](https://docs.askui.com) - The command line tool for AskUI Agents
+- 🖊️ A code editor of your choice (e.g., VSCode, PyCharm)
+- 🐍 Python 3.x
 
 ## 🔧 Setup
 
@@ -45,62 +44,53 @@ Follow these steps to set up your agent:
 
 ## ▶️ Run Your Agent
 
-Your agent is essentially a folder containing:
-
-- 📄 `agent.yml` - Contains metadata about the agent.
-- 🧩 `main.py` - Files with logic and assets of the agent, such as Python files.
-- 📘 `README.md` - Contains setup and running instructions (this file).
-
-To run your agent locally:
+To run the Tic Tac Toe agent:
 
 ```sh
 python main.py
 ```
 
->💡 Tip: Check the configuration in agent.yml to ensure the agent is connected to the correct environment.
+The agent will:
+1. Open playtictactoe.org in your browser
+2. Play as player X
+3. Implement strategic moves
+4. Automatically reset the game if needed
 
-# 🛠️ Edit and Sync Changes
+## 🎯 Game Strategy
 
-After making changes to your agent locally, you need to sync them back to AskUI Hub.
+The agent implements the following strategic rules:
 
-## ✏️ Edit Your Agent
+1. **First Move Strategy:**
+   - Takes center if available
+   - Takes a corner if center is taken
 
-Open and edit your agent files using your preferred code editor. Common files to edit include:
+2. **Winning Strategy (in priority order):**
+   - Win: Complete any line with two X's
+   - Block: Stop opponent's two-in-a-row
+   - Fork: Create multiple winning paths
+   - Defense: Take opposite corner if opponent has corner, or side middle if they have two corners
 
-- 🐍 Python Files: Modify your agent's logic.
-- ⚙️ Configuration Files: Update settings in agent.yml.
-- 🖼️ Assets: Manage images, data files, or other assets required by the agent.
+3. **Game Flow:**
+   - Waits 2 seconds between moves
+   - Verifies opponent's moves
+   - Resets game if needed
 
-## 🔄 Sync Changes to AskUI Hub
+4. **Error Handling:**
+   - Closes any popups
+   - Refreshes if game freezes
+   - Retries failed moves
 
-After editing, sync your changes using:
-
-```sh
-AskUI-SyncAgents -Direction UP
-```
-
-This uploads your local changes to AskUI Hub, making them available to other team members.
-
-# 📤 Share Agent in AskUI Hub
-
-Once your changes are synced, you can share your agent with others in your team or organization:
-
-1. Open to [AskUI Hub](https://hub.askui.com) in your browser
-2. Navigate to the Agents Overview clicking on `Agents` in the sidebar
-3. See your Agents
-
-Inform your team members that the updated agent is now available on AskUI Hub!
-
-# 🤝 Support and Contribution
+## 🤝 Support and Contribution
 
 If you encounter issues or have suggestions for improvements:
 
-- 🐛 Open an issue on this repository.
-- 🔧 Submit a pull request with your changes.
+- 🐛 Open an issue on this repository
+- 🔧 Submit a pull request with your changes
+
 Contributions are always welcome!
 
-# 📜 License
+## 📜 License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-🎉 Happy Coding! 🚀
+�� Happy Gaming! 🚀
