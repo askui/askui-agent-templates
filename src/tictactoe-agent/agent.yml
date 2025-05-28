@@ -1,0 +1,5 @@
+template:
+  name: "Tic Tac Toe Agent"
+  description: "This agent contains a Tic Tac Toe Python Vision Agent."
+
+entrypoint: python main.py
