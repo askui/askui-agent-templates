@@ -1,4 +1,4 @@
-askui
+askui==0.4.7
 PySide6
 pyqtgraph
 pyqt6

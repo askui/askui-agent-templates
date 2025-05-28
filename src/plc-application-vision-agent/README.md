@@ -1,5 +1,11 @@
 # 🚀 PLC Application Vision Agent
 
+## 🎥 Demo
+
+Watch a demo of the PLC Application Vision Agent in action:
+
+<iframe width="640" height="416" src="https://www.loom.com/embed/86fc3b4591e94aa197a4eab1df8b61ed?sid=b66fdc64-0e28-45d3-88ac-41f68e7fdca0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
 This repository contains a vision agent designed for testing a PLC (Programmable Logic Controller) water tank simulation application. The agent consists of the following key components:
 
 - 📄 `agent.yml`: Metadata configuration file for the agent.

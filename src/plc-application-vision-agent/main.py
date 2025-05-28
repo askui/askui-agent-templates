@@ -1,7 +1,9 @@
 from askui import VisionAgent
 import subprocess
 
-def tests_water_tank_manual_slider_test(agent: VisionAgent):
+with VisionAgent() as agent:
+
+    # Manual mode test
 
     agent.act("""
     wait until you the screen is fully loaded.
@@ -18,8 +20,7 @@ def tests_water_tank_manual_slider_test(agent: VisionAgent):
     
     assert is_equal, "The slider is not at the correct level"
 
-
-def tests_auto_mode(agent: VisionAgent):
+    # Auto mode test
 
     agent.act("""
     Wait until you see the screen is fully loaded.
