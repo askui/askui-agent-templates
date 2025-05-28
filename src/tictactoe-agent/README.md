@@ -6,7 +6,7 @@ This repository contains an AI agent that plays Tic Tac Toe using AskUI. The age
 
 <iframe width="560" height="315" src="https://www.loom.com/embed/621e2dd6fb4d44d2b1181f1b11e013c9?sid=64422ffa-20f3-4325-a02c-ec2a613788ba" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen ></iframe>
 
-https://www.loom.com/embed/621e2dd6fb4d44d2b1181f1b11e013c9?sid=64422ffa-20f3-4325-a02c-ec2a613788ba
+![video](https://www.loom.com/embed/621e2dd6fb4d44d2b1181f1b11e013c9?sid=64422ffa-20f3-4325-a02c-ec2a613788ba)
 
 
 ## 📚 Table of Contents
