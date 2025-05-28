@@ -1,0 +1,4 @@
+askui
+PySide6==6.9.0
+pyqtgraph==0.13.7
+pyqt6==6.9.0
