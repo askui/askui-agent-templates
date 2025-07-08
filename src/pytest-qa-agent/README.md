@@ -44,14 +44,6 @@ Follow these steps to set up your agent:
     pip install -r requirements.txt
     ```
 
-3. **Configure your Anthropic API key:**
-
-    You'll need to set your [Anthropic API key](https://console.anthropic.com/settings/keys) as an environment variable:
-
-    ```sh
-    $env:ANTHROPIC_API_KEY=<your_api_key_here>
-    ```
-
 ## ▶️ Run Your Agent
 
 This agent runs automated UI tests using Pytest and AskUI's VisionAgent. When run, it:
