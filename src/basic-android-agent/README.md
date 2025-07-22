@@ -1,0 +1,196 @@
+# AskUI Android Agent Demo
+
+A comprehensive demonstration of the AskUI Android Vision Agent library, showcasing how to automate Android devices using natural language commands and programmatic controls.
+
+## 🚀 What is AskUI?
+
+AskUI is a powerful Android automation library that allows you to interact with Android devices using:
+- **Natural language commands** - Tell the agent what you want to do in plain English
+- **Vision-based interaction** - The agent "sees" what's on screen and can interact accordingly
+- **Programmatic controls** - Direct API calls for precise automation
+- **Shell command execution** - Run system commands on the device
+
+## ✨ Key Features Demonstrated
+
+### 1. Screen Analysis
+- **Natural Language Queries**: Ask what's visible on screen
+- **Boolean Assertions**: Check if specific elements exist
+- **Contextual Understanding**: The agent understands screen content
+
+### 2. Touch Interactions
+- **Tap**: Click on specific elements or text
+- **Drag & Drop**: Move elements around the screen
+- **Swipe**: Navigate through content
+- **Key Combinations**: Execute complex key sequences
+
+### 3. Text Input
+- **Direct Typing**: Type text directly into input fields
+- **Natural Language**: Describe what you want to type
+
+### 4. Device Navigation
+- **Home Button**: Return to home screen
+- **Back Button**: Navigate back
+- **Key Combinations**: Execute multiple key presses
+
+### 5. Shell Commands
+- **System Commands**: Execute shell commands on the device
+- **File Operations**: List files, check system status
+
+### 6. Agentic Behavior
+- **Natural Language Instructions**: Give high-level commands
+- **Autonomous Execution**: Agent figures out how to accomplish tasks
+- **Context Awareness**: Understands current screen state
+
+## ��️ Installation
+
+### Prerequisites
+- AskUI Shell installed
+- ADB (Android Debug Bridge) installed and configured
+
+### Setup
+1. **Clone or download this demo**
+   ```bash
+   git clone <repository-url>
+   cd basic-android-agent
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Connect your Android device**
+   - Enable Developer Options and USB Debugging
+   - Connect via USB or start an emulator
+   - Verify connection: `adb devices`
+
+## 🎯 Usage
+
+### Basic Usage
+```bash
+python main.py
+```
+
+### Customization
+Edit `main.py` to:
+- Change device selection (uncomment and modify the serial number line)
+- Add your own automation scenarios
+- Modify timing and delays
+- Add error handling for your specific use cases
+
+## 📱 Demo Scenarios
+
+The demo includes several scenarios that showcase different capabilities:
+
+1. **Screen Analysis**: Ask what's visible on the current screen
+2. **App Interaction**: Find and tap on the Gmail app
+3. **Navigation**: Use device buttons and gestures
+4. **Text Input**: Type text into input fields
+5. **Shell Commands**: Execute system commands
+6. **Agentic Behavior**: Give natural language instructions
+
+## �� Configuration
+
+### Device Selection
+If you have multiple devices connected, uncomment and modify this line in `main.py`:
+```python
+agent.set_device_by_serial_number("your-device-serial")
+```
+
+### Timing Adjustments
+Modify the `time.sleep()` calls to adjust delays based on your device's performance.
+
+## 🎨 Customization Examples
+
+### Adding Your Own Scenarios
+```python
+# Example: Open a specific app
+agent.act("Open the Settings app")
+
+# Example: Fill a form
+agent.type("your-email@example.com")
+agent.tap(loc.Text("Submit"))
+
+# Example: Navigate through menus
+agent.tap(loc.Text("Menu"))
+agent.tap(loc.Text("Settings"))
+```
+
+### Error Handling
+```python
+try:
+    agent.tap(loc.Text("Some Button"))
+except Exception as e:
+    print(f"Button not found: {e}")
+    # Fallback action
+```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+1. **Device Not Found**
+   - Ensure ADB is properly installed
+   - Check device connection: `adb devices`
+   - Enable USB debugging on device
+
+2. **Permission Errors**
+   - Grant necessary permissions on the Android device
+   - Check if the device is authorized for debugging
+
+3. **Element Not Found**
+   - Verify the element text/description is correct
+   - Check if the element is visible on screen
+   - Try using different locator strategies
+
+4. **Timing Issues**
+   - Increase delays for slower devices
+   - Add wait conditions for dynamic content
+
+### Debug Mode
+Enable verbose logging by modifying the agent initialization:
+```python
+with AndroidVisionAgent(
+    log_level=logging.DEBUG
+) as agent:
+```
+
+## �� API Reference
+
+### Core Methods
+
+- `agent.get(question, response_schema=bool)` - Ask questions about screen content
+- `agent.tap(locator)` - Tap on elements
+- `agent.type(text)` - Type text
+- `agent.key_tap(key)` - Press device keys
+- `agent.swipe(x1, y1, x2, y2)` - Swipe gesture
+- `agent.drag_and_drop(x1, y1, x2, y2)` - Drag and drop
+- `agent.shell(command)` - Execute shell commands
+- `agent.act(instruction)` - Natural language instructions
+
+### Locators
+- `loc.Text("text")` - Find by text content
+- `loc.Id("id")` - Find by element ID
+- `loc.Class("class")` - Find by CSS class
+
+## �� Contributing
+
+Feel free to:
+- Add new demo scenarios
+- Improve error handling
+- Add more documentation
+- Report issues and suggest features
+
+## �� License
+
+This demo is provided as-is for educational and demonstration purposes.
+
+## 🔗 Resources
+
+- [AskUI Documentation](https://docs.askui.com)
+- [Android Developer Guide](https://developer.android.com)
+- [ADB Documentation](https://developer.android.com/studio/command-line/adb)
+
+---
+
+**Happy Automating! 🚀** 

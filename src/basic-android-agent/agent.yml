@@ -1,0 +1,5 @@
+template:
+  name: "Basic Android Agent"
+  description: "This agent contains a basic Python Android Agent."
+
+entrypoint: python main.py
