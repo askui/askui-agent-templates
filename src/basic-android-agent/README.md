@@ -155,6 +155,38 @@ with AndroidVisionAgent(
 ) as agent:
 ```
 
+## AskUI Chat
+
+You can test the agentic behavior directly through AskUI's web-based chat interface without writing any code. This allows you to interact with your Android device using natural language commands through a user-friendly chat interface.
+
+### Getting Started with AskUI Chat
+
+1. **Start the Chat Server**
+   ```bash
+   python -m askui.chat
+   ```
+
+2. **Access the Web Interface**
+   - Open your web browser and navigate to [hub.askui.com](https://hub.askui.com)
+   - Use the chat interface to interact with your connected Android device
+
+### What You Can Do
+
+- **Natural Language Commands**: "Open Gmail and check for new messages"
+- **Screen Analysis**: "What apps are currently visible on my home screen?"
+- **Device Control**: "Go back to the home screen and open Settings"
+- **Interactive Testing**: Experiment with different commands and see how the agent responds
+
+### Benefits
+
+- **No Coding Required**: Test automation ideas quickly without writing Python code
+- **Real-time Interaction**: See immediate responses and device actions
+- **Learning Tool**: Understand how the agent interprets and executes commands
+- **Rapid Prototyping**: Validate automation workflows before implementing them in code
+
+This is perfect for exploring AskUI's capabilities or demonstrating the technology to others!
+
+
 ## �� API Reference
 
 ### Core Methods
@@ -172,18 +204,6 @@ with AndroidVisionAgent(
 - `loc.Text("text")` - Find by text content
 - `loc.Id("id")` - Find by element ID
 - `loc.Class("class")` - Find by CSS class
-
-## �� Contributing
-
-Feel free to:
-- Add new demo scenarios
-- Improve error handling
-- Add more documentation
-- Report issues and suggest features
-
-## �� License
-
-This demo is provided as-is for educational and demonstration purposes.
 
 ## 🔗 Resources
 
