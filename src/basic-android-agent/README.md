@@ -41,28 +41,23 @@ AskUI is a powerful Android automation library that allows you to interact with 
 - **Autonomous Execution**: Agent figures out how to accomplish tasks
 - **Context Awareness**: Understands current screen state
 
-## ��️ Installation
+## Installation
 
 ### Prerequisites
 - AskUI Shell installed
 - ADB (Android Debug Bridge) installed and configured
 
 ### Setup
-1. **Clone or download this demo**
-   ```bash
-   git clone <repository-url>
-   cd basic-android-agent
-   ```
 
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Connect your Android device**
+2. **Connect your Android device**
    - Enable Developer Options and USB Debugging
    - Connect via USB or start an emulator
-   - Verify connection: `adb devices`
+   - Verify connection: `adb devices` (it should show a list of connected devices)
 
 ## 🎯 Usage
 
@@ -89,7 +84,7 @@ The demo includes several scenarios that showcase different capabilities:
 5. **Shell Commands**: Execute system commands
 6. **Agentic Behavior**: Give natural language instructions
 
-## �� Configuration
+## Configuration
 
 ### Device Selection
 If you have multiple devices connected, uncomment and modify this line in `main.py`:
@@ -213,4 +208,4 @@ This is perfect for exploring AskUI's capabilities or demonstrating the technolo
 
 ---
 
-**Happy Automating! 🚀** 
+**Happy Automating! 🚀**
