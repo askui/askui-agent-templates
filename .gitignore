@@ -175,3 +175,4 @@ cython_debug/
 
 .DS_Store
 manifest.yml
+**/source_files/target.xlsx

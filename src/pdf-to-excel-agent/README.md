@@ -1,124 +1,106 @@
-# 🚀 PDF to Excel Agent
+# PDF → Excel Agent (AskUI + MCP)
 
-This repository contains a PDF to Excel conversion agent that uses OpenAI's Vision API or AskUI's Vision capabilities to extract data from PDF invoices and convert it into structured Excel files. The agent consists of:
+This demo shows how to build a modular AskUI agent that extracts data from a PDF and writes it into an Excel file that follows a given template. It highlights how AskUI agents can plug in Model Context Protocol (MCP) tools to extend capabilities—in this case, an Excel MCP server.
 
-- 📄 `agent.yml`: Metadata configuration file for the agent.
-- 🐍 `main.py`: Core Python script containing the extraction and conversion logic.
-- 📘 `README.md`: Setup and running instructions (you are reading it now!).
+## Why this matters
 
-## 📚 Table of Contents
+- **Modularity**: AskUI agents are tool-agnostic. You can plug in different MCP tools without changing core logic.  
+- **MCP Support**: This repo uses an **Excel MCP server** to read/write spreadsheets as tools available to the agent.  
+- **Deterministic I/O**: The scripted demo constrains file access to a single directory for safety and reproducibility.  
 
-- [🚀 PDF to Excel Agent](#-pdf-to-excel-agent)
-  - [📚 Table of Contents](#-table-of-contents)
-  - [⚙️ Prerequisites](#️-prerequisites)
-  - [🔧 Setup](#-setup)
-  - [▶️ Run Your Agent](#️-run-your-agent)
-  - [📋 Usage Guide](#-usage-guide)
-- [🛠️ Edit and Sync Changes](#️-edit-and-sync-changes)
-  - [✏️ Edit Your Agent](#️-edit-your-agent)
-  - [🔄 Sync Changes to AskUI Hub](#-sync-changes-to-askui-hub)
-- [📤 Share Agent in AskUI Hub](#-share-agent-in-askui-hub)
-- [🤝 Support and Contribution](#-support-and-contribution)
-- [📜 License](#-license)
+## What the demo does
 
-## ⚙️ Prerequisites
+- Reads a PDF to extract data  
+- Reads an Excel template  
+- Writes a new Excel file that follows the template and fills it with the extracted data  
 
-Before you can set up and run your agent, ensure you have the following:
+All demo files are under `source_files`, which is the only location the demo script reads and writes to by design.  
 
-- 🔄 [AskUI Shell](https://docs.askui.com) - The command line tool for AskUI Agents
-- 🖊️ A code editor of your choice (e.g., VSCode, PyCharm)
-- 🔑 OpenAI API key (if using OpenAI Vision capabilities)
-- 📦 Required Python packages (see requirements.txt)
+## Project structure
 
-## 🔧 Setup
-
-1. **Start AskUI Shell:**
-
-    ```sh
-    askui-shell
-    ```
-
-2. **Install dependencies:**
-
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-3. **Set up environment variables:**
-
-    ```sh
-    $env:OPENAI_API_KEY='your-api-key-here'  # Required for OpenAI Vision
-    ```
-
-## ▶️ Run Your Agent
-
-1. **Prepare your PDFs:**
-   - Create a folder named `pdfs` in your project directory
-   - Place your PDF invoices in this folder
-
-2. **Run the agent:**
-
-    ```sh
-    python main.py
-    ```
-
-## 📋 Usage Guide
-
-**OpenAI Vision Mode (Default)**
-
-- Uses OpenAI's Vision API for high-accuracy data extraction
-- Extracts structured data including:
-  - Invoice numbers
-  - Dates
-  - Line items (quantity, weights, prices, etc.)
-  
-The extracted data is saved to `extraction.xlsx` with:
-
-- One sheet per PDF
-- Structured columns for invoice details
-- Separate rows for each line item
-
-# 🛠️ Edit and Sync Changes
-
-## ✏️ Edit Your Agent
-
-You can customize the agent by modifying:
-
-- 🐍 `main.py`: Adjust extraction logic, data processing, or output format
-- ⚙️ `agent.yml`: Update agent configuration
-- 🔧 Extraction parameters in the OpenAI prompt (within `main.py`)
-- 🖼️ Assets: Manage images, data files, or other assets required by the agent.
-
-## 🔄 Sync Changes to AskUI Hub
-
-After editing, sync your changes using:
-
-```sh
-AskUI-SyncAgents -Direction UP
+```bash
+src/pdf-to-excel-agent/
+  main.py                 # Demo script wiring AskUI agent + MCP tools
+  helpers/tools.py        # Custom AskUI tools (e.g., PDF file reader)
+  source_files/
+    demo_data.pdf         # Input PDF
+    demo_template.xlsx    # Excel template
+    target.xlsx           # Output written by the agent
+  requirements.txt        # AskUI + Excel MCP server dependency
+  chat/
+    assistants/
+      asst_68d3d3073045083a7047d6da.json # Custom assistant called PDF to Excel Agent
+    mcp_configs/
+      mcpcnf_68d6586e304508462ee46c82.json # Custom MCP config called Excel MCP server
+  README.md
 ```
 
-This uploads your local changes to AskUI Hub, making them available to other team members.
+## Setup
 
-# 📤 Share Agent in AskUI Hub
+### Prerequisites
 
-Once your changes are synced, you can share your agent with others in your team or organization:
+- [AskUI Suite Installed](https://docs.askui.com/01-tutorials/00-installation)
 
-1. Open to [AskUI Hub](https://hub.askui.com) in your browser
-2. Navigate to the Agents Overview clicking on `Agents` in the sidebar
-3. See your Agents
+### Steps
 
-Inform your team members that the updated agent is now available on AskUI Hub!
+1. **Open AskUI Shell**
 
-# 🤝 Support and Contribution
+   ```bash
+   askui-shell
+   ```
 
-If you encounter issues or have suggestions for improvements:
+2. **Configure AskUI Credentials** (first-time setup only)
 
-- 🐛 Open an issue on this repository.
-- 🔧 Submit a pull request with your changes.
-Contributions are always welcome!
+   1. Create an access token: [Access Token Guide](https://docs.askui.com/02-how-to-guides/01-account-management/04-tokens)  
+   2. Set up credentials: [Credentials Setup Guide](https://docs.askui.com/04-reference/02-askui-suite/02-askui-suite/ADE/Public/AskUI-SetSettings)  
 
-# 📜 License
+3. **Enable Python Environment**
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+   ```bash
+   AskUI-EnablePythonEnvironment -name 'AskUIDemo' -CreateIfNotExists
+   ```
 
-🎉 Happy Coding! 🚀
+4. **Install Dependencies** (re-run if `requirements.txt` changes)
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Run the Agent**  
+   This will start the agent and execute the task defined in `main.py`:
+
+   ```bash
+   python ./main.py
+   ```
+
+## Interactive chat mode
+
+There is also an interactive way to use the agent via the chat functionality:
+
+- **Attach files in the chat UI** and provide **absolute file paths** to the agent.  
+- In chat mode, the MCP file tools are allowed to **read and write files anywhere on disk** (unlike the scripted demo, which is constrained to `source_files`).  
+- You can ask the agent to perform tasks step by step and iterate interactively.  
+
+To run chat mode, follow setup steps 1–4, then run the following command from the root of this example project:
+
+```bash
+python -m askui.chat
+```
+
+Then open [AskUI Caesr](https://app.caesr.ai/) and start a new interactive chat with the agent.  
+To access the custom tools, select **PDF to Excel Agent** from the dropdown menu.  
+
+### Example usage
+
+1. Select **PDF to Excel Agent** from the dropdown menu.  
+2. Attach the PDF using the file picker icon.  
+3. Use a prompt like the following to create a new Excel file that follows the template and contains the data from the PDF:  
+
+```Text
+Read the attached PDF and the Excel template from "$PROJECT_ROOT/source_files/demo_template.xlsx".
+Create a new Excel file at "$PROJECT_ROOT/source_files/target.xlsx" that follows the template and has the data from the PDF.
+```
+
+## Notes and tips
+
+- Replace `demo_data.pdf` and `demo_template.xlsx` in `source_files/` with your own files to adapt the demo.  

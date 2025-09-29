@@ -1,0 +1,9 @@
+{
+    "id": "mcpcnf_68d6586e304508462ee46c82",
+    "name": "ExcelMCPServer",
+    "mcp_server": {
+      "command": "excel-mcp-server",
+     "args": ["stdio"]
+    },
+    "created_at": 1758877806
+  }

@@ -1,0 +1,13 @@
+*.DS_Store
+*__pycache__
+agent_workspace/*
+node_modules/*
+chat/*
+
+!chat/assistants/
+chat/assistants/*
+!chat/assistants/asst_68d3d3073045083a7047d6da.json
+
+!chat/mcp_configs/
+chat/mcp_configs/*
+!chat/mcp_configs/mcpcnf_68d6586e304508462ee46c82.json

@@ -1,1 +1,2 @@
-askui
+askui[all]===0.20.0
+https://github.com/mlikasam-askui/excel-mcp-server/archive/refs/heads/main.zip
